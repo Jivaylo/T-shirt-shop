@@ -20,12 +20,12 @@ namespace T_shirt_shop.Data
         {
             if (!this.ShirtSizes.Any())
             {
-                this.ShirtSizes.Add(new ShirtSize { Name = "S", Price = 200, SortPriority = 10 });
-                this.ShirtSizes.Add(new ShirtSize { Name = "M", Price = 250, SortPriority = 20 });
-                this.ShirtSizes.Add(new ShirtSize { Name = "L", Price = 250, SortPriority = 30 });
-                this.ShirtSizes.Add(new ShirtSize { Name = "XL", Price = 250, SortPriority = 40 });
-                this.ShirtSizes.Add(new ShirtSize { Name = "XXL", Price = 250, SortPriority = 50 });
-                this.ShirtSizes.Add(new ShirtSize { Name = "XXXL", Price = 300, SortPriority = 60 });
+                this.ShirtSizes.Add(new ShirtSize { Name = "S", Price = 77, SortPriority = 10 });
+                this.ShirtSizes.Add(new ShirtSize { Name = "M", Price = 149, SortPriority = 20 });
+                this.ShirtSizes.Add(new ShirtSize { Name = "L", Price = 149, SortPriority = 30 });
+                this.ShirtSizes.Add(new ShirtSize { Name = "XL", Price = 149, SortPriority = 40 });
+                this.ShirtSizes.Add(new ShirtSize { Name = "XXL", Price = 149, SortPriority = 50 });
+                this.ShirtSizes.Add(new ShirtSize { Name = "XXXL", Price = 159, SortPriority = 60 });
             }
             if (!this.ShirtTypes.Any())
             {
