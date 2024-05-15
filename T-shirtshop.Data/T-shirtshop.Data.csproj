@@ -23,4 +23,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\T-shirtshop.Data.Models\T-shirtshop.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>

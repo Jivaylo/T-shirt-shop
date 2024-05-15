@@ -21,8 +21,8 @@ namespace T_shirtshop.Data.Models
         public ShirtSize ShirtSize { get; set; } = null!;
 
         public int ShirtSizeId { get; set; }
-
-        public ShirtType ShirtType { get; set; }
+        
+        public ShirtType ShirtType { get; set; } = null!;
 
         public int ShirtTypeId { get; set; }
 
