@@ -8,20 +8,22 @@ using System.Threading.Tasks;
 
 namespace T_shirtshop.Data.Models
 {
-    public class Order
+    public class TShirt
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public DateTime OrderDate { get; set; }
+        [StringLength(50)]
+        public string Name { get; set; } = null!;
 
-        [ForeignKey("CustomerId")]
-        public int CustomerId { get; set; }
+        [Required]
+        public decimal Price { get; set; }
 
-        [ForeignKey("CustomerId")]
-        public virtual Customer Customer { get; set; } = null!;
+        [ForeignKey("TeamId")]
+        public int TeamId { get; set; }
 
-        public virtual ICollection<OrderItem> OrderItems { get; set; } = null!;
+        [ForeignKey("TeamId")]
+        public virtual Team Team { get; set; } = null!;
     }
 }

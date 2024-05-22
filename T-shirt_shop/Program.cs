@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using T_shirt_shop.Data;
 
 namespace T_shirt_shop
 {
