@@ -15,6 +15,7 @@ namespace T_shirt_shop.Data
         public DbSet<ShirtSize> ShirtSizes { get; set; }
 
         public DbSet<ShirtType> ShirtTypes { get; set; }
+        public DbSet<ShopUser> ShopUsers { get; set; }
 
         public void Seed()
         {
