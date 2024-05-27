@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\T-shirt.Data\T-shirt.Data.csproj" />
+    <ProjectReference Include="..\T-shirt.Data\T-shirt.Data.csproj" />
   </ItemGroup>
 
 </Project>
