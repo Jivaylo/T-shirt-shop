@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T-shirt_shop", "T-shirt_sho
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{DAC9FF8A-F6D6-4CD8-ADE7-508057660CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T-shirtshop.Data", "T-shirtshop.Data\T-shirtshop.Data.csproj", "{ABF6FA9D-C0B1-4401-90F3-8A1300E96040}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T-shirtshop.Data.Models", "T-shirtshop.Data.Models\T-shirtshop.Data.Models.csproj", "{B603D68B-205E-4CAF-89F2-6CD67D2AE56E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D3650B43-3648-42D0-BF45-2ADBD8E388DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T-shirt.Data", "..\..\T-shirt.Data\T-shirt.Data.csproj", "{01DE701E-38FA-4813-950F-4DEBDD81E31F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T-shirt.Data.Models", "..\..\T-shirt.Data.Models\T-shirt.Data.Models.csproj", "{11F4AEA1-4D80-41CC-AFEA-4DF286FD9786}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,22 +23,22 @@ Global
 		{B5A5B1CB-CBE3-406E-A3BF-A1B6DB7A3630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5A5B1CB-CBE3-406E-A3BF-A1B6DB7A3630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5A5B1CB-CBE3-406E-A3BF-A1B6DB7A3630}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABF6FA9D-C0B1-4401-90F3-8A1300E96040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABF6FA9D-C0B1-4401-90F3-8A1300E96040}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABF6FA9D-C0B1-4401-90F3-8A1300E96040}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABF6FA9D-C0B1-4401-90F3-8A1300E96040}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B603D68B-205E-4CAF-89F2-6CD67D2AE56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B603D68B-205E-4CAF-89F2-6CD67D2AE56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B603D68B-205E-4CAF-89F2-6CD67D2AE56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B603D68B-205E-4CAF-89F2-6CD67D2AE56E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01DE701E-38FA-4813-950F-4DEBDD81E31F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01DE701E-38FA-4813-950F-4DEBDD81E31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01DE701E-38FA-4813-950F-4DEBDD81E31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01DE701E-38FA-4813-950F-4DEBDD81E31F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F4AEA1-4D80-41CC-AFEA-4DF286FD9786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F4AEA1-4D80-41CC-AFEA-4DF286FD9786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F4AEA1-4D80-41CC-AFEA-4DF286FD9786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F4AEA1-4D80-41CC-AFEA-4DF286FD9786}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B5A5B1CB-CBE3-406E-A3BF-A1B6DB7A3630} = {D3650B43-3648-42D0-BF45-2ADBD8E388DC}
-		{ABF6FA9D-C0B1-4401-90F3-8A1300E96040} = {DAC9FF8A-F6D6-4CD8-ADE7-508057660CBD}
-		{B603D68B-205E-4CAF-89F2-6CD67D2AE56E} = {DAC9FF8A-F6D6-4CD8-ADE7-508057660CBD}
+		{01DE701E-38FA-4813-950F-4DEBDD81E31F} = {DAC9FF8A-F6D6-4CD8-ADE7-508057660CBD}
+		{11F4AEA1-4D80-41CC-AFEA-4DF286FD9786} = {DAC9FF8A-F6D6-4CD8-ADE7-508057660CBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CAA3B64C-3D38-4A16-8023-F3D1DC6DAF6D}
