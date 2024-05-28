@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 using T_shirt.Data.Models;
 
 namespace T_shirt_shop.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -23,7 +24,6 @@ namespace T_shirt_shop.Data
             modelBuilder.Entity<ShoppingCartItem>().HasKey(sci => sci.Id);
             modelBuilder.Entity<Order>().HasKey(o => o.Id);
             modelBuilder.Entity<OrderItem>().HasKey(oi => oi.Id);
-            modelBuilder.Entity<ApplicationUser>().HasKey(u => u.Id);
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne<Order>(oi => oi.Order)
@@ -40,8 +40,10 @@ namespace T_shirt_shop.Data
             modelBuilder.Entity<Order>()
                 .HasOne<ApplicationUser>(o => o.ApplicationUser)
                 .WithMany(u => u.Orders)
-                .HasForeignKey(o => o.ApplicationUser) 
+                .HasForeignKey(o => o.ApplicationUserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+                 base.OnModelCreating(modelBuilder);
         }
     }
 }

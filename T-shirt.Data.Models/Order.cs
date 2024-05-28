@@ -20,7 +20,9 @@ namespace T_shirt.Data.Models
         public decimal TotalPrice { get; set; }
 
         [Required]
+        [ForeignKey(nameof(ApplicationUser))]
         public string ApplicationUserId { get; set; } = null!;
+        public ApplicationUser ApplicationUser { get; set; } = null!;
 
         [Required]
         public DateTime OrderDate { get; set; }
