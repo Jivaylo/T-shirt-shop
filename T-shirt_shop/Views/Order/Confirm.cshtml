@@ -1,0 +1,41 @@
+﻿@model Order
+
+<h1>Confirm Order</h1>
+
+<p>Are you sure you want to confirm this order?</p>
+
+<form asp-action="Confirm" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-primary">Confirm</button>
+    <a href="@Url.Action("Index", "Order")" class="btn btn-secondary">Cancel</a>
+</form>
+
+@if (Model.OrderItems.Count > 0)
+{
+    <h2>Order Summary</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Product.Price.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2" class="text-right"><strong>Total:</strong></td>
+                <td>@Model.Total.ToString("C")</td>
+            </tr>
+        </tfoot>
+    </table>
+}

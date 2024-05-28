@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Category>
+
+<h1>Manage Categories</h1>
+
+<a href="@Url.Action("Create", "Admin", new { area = "Admin" })" class="btn btn-primary">Create New Category</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Admin", new { id = item.Id })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Delete", "Admin", new { id = item.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
