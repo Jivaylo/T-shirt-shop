@@ -27,8 +27,6 @@ namespace T_shirt.Data.Models
         [Required]
         public string GiftMessage { get; set; } = null!;
 
-        [ForeignKey("ApplicationUserId")]
-        public ApplicationUser ApplicationUser { get; set; } = null!;
         public ICollection<OrderItem> OrderItems { get; set; } = null!;
     }
 }
