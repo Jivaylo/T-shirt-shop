@@ -24,14 +24,14 @@ namespace T_shirt_shop.Controllers
             if (cart.Lines.Count() == 0)
             {
                 ModelState.AddModelError("", "Sorry, your cart is empty!");
-        }
+            }
             if (ModelState.IsValid)
-        {
+            {
                 order.Lines = cart.Lines.ToArray();
                 repository.SaveOrder(order);
                 cart.Clear();
                 return RedirectToPage("/Completed", new { orderId = order.OrderID });
-        }
+            }
             else
             {
                 return View();

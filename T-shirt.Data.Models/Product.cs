@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,27 +12,20 @@ namespace T_shirt.Data.Models
 {
     public class Product
     {
-        [Key]
-        public int Id { get; set; }
+        public long ProductID { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = "Please enter a product name")]
         public string Name { get; set; } = null!;
 
-        [Required]
-        [StringLength(1000)]
+        [Required(ErrorMessage = "Please enter a description")]
         public string Description { get; set; } = null!;
 
         [Required]
-        [Range(0, double.MaxValue)]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Please enter a positive price")]
+        [Column(TypeName = "decimal(8, 2)")]
         public decimal Price { get; set; }
 
-        [Required]
-        [StringLength(200)]
-        public string ImageUrl { get; set; } = null!;
-
-        [Display(Name = "In Stock")]
-        [Range(0, int.MaxValue)]
-        public int Quantity { get; set; }
+        [Required(ErrorMessage = "Please specify a category")]
+        public string Category { get; set; } = null!;
     }
 }

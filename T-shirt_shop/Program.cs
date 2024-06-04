@@ -22,6 +22,11 @@ namespace T_shirt_shop
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSession();
+           builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+           
+
 
             var app = builder.Build();
 
