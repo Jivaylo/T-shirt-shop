@@ -7,44 +7,35 @@ namespace T_shirt_shop.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private IOrderRepository repository;
+        private Cart cart;
 
-        public OrderController(ApplicationDbContext context)
+        public OrderController(IOrderRepository repoService, Cart cartService)
         {
-            _context = context;
+            repository = repoService;
+            cart = cartService;
         }
 
-        public IActionResult Index()
-        {
-            var orders = _context.Orders.ToList();
-            return View(orders);
-        }
-
-        public IActionResult Details(int id)
-        {
-            var order = _context.Orders.Find(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-            return View(order);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public ViewResult Checkout() => View(new Order());
 
         [HttpPost]
-        public IActionResult Create(Order order)
+        public IActionResult Checkout(Order order)
         {
-            if (ModelState.IsValid)
+            if (cart.Lines.Count() == 0)
             {
-                _context.Orders.Add(order);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                ModelState.AddModelError("", "Sorry, your cart is empty!");
+        }
+            if (ModelState.IsValid)
+        {
+                order.Lines = cart.Lines.ToArray();
+                repository.SaveOrder(order);
+                cart.Clear();
+                return RedirectToPage("/Completed", new { orderId = order.OrderID });
+        }
+            else
+            {
+                return View();
             }
-            return View(order);
         }
     }
 }
