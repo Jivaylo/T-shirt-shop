@@ -27,5 +27,6 @@ namespace T_shirt.Data.Models
 
         [Required(ErrorMessage = "Please specify a category")]
         public string Category { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
     }
 }

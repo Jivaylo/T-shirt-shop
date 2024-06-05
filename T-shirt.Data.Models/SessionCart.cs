@@ -24,7 +24,7 @@ namespace T_shirt.Data.Models.Models
         }
 
         [JsonIgnore]
-        public ISession Session { get; set; }
+        public ISession Session { get; set; } = null!;
         public override void AddItem(Product product, int quantity)
         {
             base.AddItem(product, quantity);
