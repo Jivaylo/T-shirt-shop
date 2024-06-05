@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using T_shirt.Data;
 using T_shirt.Data.Models;
-using T_shirt.Data.Models.DataGenerator;
+using T_shirt.Data.DataGenerator;
 using T_shirt.Data.Models.Models;
 using T_shirt_shop.Data;
 

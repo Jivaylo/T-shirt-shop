@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\T-shirt.Data\T-shirt.Data.csproj" />
+    <ProjectReference Include="..\T-shirt.Web.ViewModels\T-shirt.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

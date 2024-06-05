@@ -1,22 +1,42 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using T_shirt_shop.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace T_shirt_shop.Controllers
+using Microsoft.AspNetCore.Mvc;
+using T_shirt.Data.Models.Models;
+using T_shirt_shop.Models.ViewModels;
+
+namespace SportsStore.Controllers
 {
     public class HomeController : Controller
     {
+        private IStoreRepository repository;
+        public int PageSize { get; set; } = 4;
 
-        public IActionResult Index()
+        public HomeController(IStoreRepository repo)
         {
-            return View();
+            repository = repo;
         }
 
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public ViewResult Index(string category, int productPage = 1)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ProductsListViewModel
+            {
+                Products = repository.Products
+                    .Where(p => category == null || p.Category == category)
+                    .OrderBy(p => p.ProductID)
+                    .Skip((productPage - 1) * PageSize)
+                    .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = productPage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = category == null ? repository.Products.Count() : repository.Products.Where(e =>
+                            e.Category == category).Count()
+                },
+                CurrentCategory = category
+            });
         }
     }
 }
