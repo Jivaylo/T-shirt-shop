@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace T_shirt_shop.Models.ViewModels
+namespace T_shirt.Models.ViewModels
 {
     public class PagingInfo
     {

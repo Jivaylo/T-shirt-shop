@@ -5,87 +5,71 @@ using T_shirt.Data.Models;
 using T_shirt.Data.DataGenerator;
 using T_shirt.Data.Models.Models;
 using T_shirt_shop.Data;
+using Microsoft.AspNetCore.Builder;
 
 namespace T_shirt_shop
 {
     public class Program
     {
-            public IConfiguration Configuration { get; set; }
+        public static void Main(string[] args)
+        {
+            WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        public Program(IConfiguration config)
-        {
-            Configuration = config;
-        }
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllersWithViews();
-            services.AddDbContext<StoreDbContext>(opts =>
+            // Database connection settings
+            string connectionString = builder.Configuration
+                .GetConnectionString("DefaultConnection") ??
+                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            builder.Services.AddDbContext<StoreDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            // Identity settings
+            builder.Services
+                .AddDefaultIdentity<IdentityUser>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<StoreDbContext>();
+
+            builder.Services.AddControllersWithViews();
+
+            WebApplication app = builder.Build();
+
+            // After the app is built the order of middlewares matter!
+
+            if (app.Environment.IsDevelopment())
             {
-                opts.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"]);
-            });
-
-            services.AddScoped<IStoreRepository, EFStoreRepository>();
-            services.AddScoped<IOrderRepository, EFOrderRepository>();
-            services.AddRazorPages();
-            services.AddDistributedMemoryCache();
-            services.AddSession();
-            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddServerSideBlazor();
-
-            services.AddDbContext<AppIdentityDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:IdentityConnection"]));
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppIdentityDbContext>();
-        }
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsProduction())
-            {
-                app.UseExceptionHandler("/error");
+                app.UseMigrationsEndPoint();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseDeveloperExceptionPage();
-                app.UseStatusCodePages();
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
-            app.UseDeveloperExceptionPage();
-            app.UseStatusCodePages();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("catpage", "{category}/Page{productPage:int}",
-                    new { Controller = "Home", action = "Index" }
-                );
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+            //app.MapDefaultControllerRoute();
 
-                endpoints.MapControllerRoute("page", "Page{productPage:int}",
-                    new { Controller = "Home", action = "Index", productPage = 1 }
-                );
+            app.MapRazorPages();
 
-                endpoints.MapControllerRoute("category", "{category}",
-                    new { Controller = "Home", action = "Index", productPage = 1 }
-                );
-
-                endpoints.MapControllerRoute("pagination", "Products/Page{productPage}",
-                    new { Controller = "Home", action = "Index", productPage = 1 }
-                );
-
-                endpoints.MapDefaultControllerRoute();
-                endpoints.MapRazorPages();
-                endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
-            });
-
-          //  SeedData.EnsurePopulated(app);
-            IdentitySeedData.EnsurePopulated(app);
+            app.Run();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using T_shirt.Data.Models;
 
-namespace T_shirt_shop.Models.ViewModels
+namespace T_shirt.Models.ViewModels
 {
     public class ProductsListViewModel
     {
