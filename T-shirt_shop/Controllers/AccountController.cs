@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using T_shirt_shop.Models.ViewModels;
 
-namespace SportsStore.Controllers
+namespace T_shirt_shop.Controllers
 {
     public class AccountController : Controller
     {

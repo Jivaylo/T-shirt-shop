@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using T_shirt.Data.Models.Models;
 using T_shirt_shop.Models.ViewModels;
 
-namespace SportsStore.Controllers
+namespace T_shirt_shop.Controllers
 {
     public class HomeController : Controller
     {

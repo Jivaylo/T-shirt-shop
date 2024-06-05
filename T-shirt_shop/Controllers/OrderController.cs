@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using T_shirt.Data.Models;
 
-namespace SportsStore.Controllers
+namespace T_shirt_shop.Controllers
 {
     public class OrderController : Controller
     {
