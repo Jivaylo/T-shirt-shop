@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T-shirt.Data", "T-shirt.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T-shirt.Data.Models", "T-shirt.Data.Models\T-shirt.Data.Models.csproj", "{90A17DB1-0D49-475B-A03D-2C02B7D945B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T-shirt.Web.ViewModels", "T-shirt.Web.ViewModels\T-shirt.Web.ViewModels.csproj", "{17DEE92F-DD2C-4B3E-A4AC-36C412CAC464}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{90A17DB1-0D49-475B-A03D-2C02B7D945B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90A17DB1-0D49-475B-A03D-2C02B7D945B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90A17DB1-0D49-475B-A03D-2C02B7D945B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17DEE92F-DD2C-4B3E-A4AC-36C412CAC464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17DEE92F-DD2C-4B3E-A4AC-36C412CAC464}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17DEE92F-DD2C-4B3E-A4AC-36C412CAC464}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17DEE92F-DD2C-4B3E-A4AC-36C412CAC464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,7 +39,6 @@ Global
 		{B5A5B1CB-CBE3-406E-A3BF-A1B6DB7A3630} = {D3650B43-3648-42D0-BF45-2ADBD8E388DC}
 		{C8AD7C4E-9B47-4508-BBD2-A7CD93FB2DC4} = {DAC9FF8A-F6D6-4CD8-ADE7-508057660CBD}
 		{90A17DB1-0D49-475B-A03D-2C02B7D945B8} = {DAC9FF8A-F6D6-4CD8-ADE7-508057660CBD}
-		{17DEE92F-DD2C-4B3E-A4AC-36C412CAC464} = {D3650B43-3648-42D0-BF45-2ADBD8E388DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CAA3B64C-3D38-4A16-8023-F3D1DC6DAF6D}

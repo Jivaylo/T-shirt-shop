@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using T_shirt.Data.Models;
+using T_shirt.Data.Models.Models;
 
-using SportsStore.Infrastructure;
-using SportsStore.Models;
 
-namespace SportsStore.Pages
+namespace T_shirt_shop.Pages
 {
     public class CartModel : PageModel
     {
