@@ -7,6 +7,7 @@
     <div class="col-md-8">
         <h1>@Model.Name</h1>
         <p>@Model.Description</p>
+        <p>@Model.ImageUrl</p>
         <p>@Model.Price.ToString("C")</p>
         <a href="@Url.Action("AddToCart", "Shop", new { id = Model.Id })" class="btn btn-primary">Add to Cart</a>
     </div>

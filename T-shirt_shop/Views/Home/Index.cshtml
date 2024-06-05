@@ -1,18 +1,12 @@
-﻿@model IEnumerable<Product>
+﻿@model ProductsListViewModel
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-4">
-            <div class="card">
-                <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name">
-                <div class="card-body">
-                    <h5 class="card-title">@item.Name</h5>
-                    <p class="card-text">@item.Description</p>
-                    <p class="card-text">@item.Price.ToString("C")</p>
-                    <a href="@Url.Action("Details", "Shop", new { id = item.Id })" class="btn btn-primary">Details</a>
-                </div>
-            </div>
-        </div>
-    }
+@foreach (var p in Model.Products)
+{
+    <partial name="ProductSummary" model="p" />
+}
+
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+     class="btn-group pull-right m-1">
 </div>
