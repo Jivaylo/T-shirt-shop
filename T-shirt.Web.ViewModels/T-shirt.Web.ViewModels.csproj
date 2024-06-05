@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\T-shirt.Data.Models\T-shirt.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>
