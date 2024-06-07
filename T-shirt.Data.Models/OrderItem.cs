@@ -20,7 +20,7 @@ namespace T_shirt.Data.Models
 
         [Required]
         [ForeignKey("Product")]
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
 
         [Required]
         [Range(1, int.MaxValue)]

@@ -13,15 +13,19 @@ namespace T_shirt_shop.Pages
     public class CartModel : PageModel
     {
         private IStoreRepository repository;
-        public CartModel(IStoreRepository repo, Cart cartService)
+        private IOrderRepository orderRepository;
+        public CartModel(IStoreRepository repo, IOrderRepository orderRepository)
         {
             repository = repo;
-            Cart = cartService;
+            this.orderRepository = orderRepository;
         }
         public Cart Cart { get; set; }
         public string ReturnUrl { get; set; }
         public void OnGet(string returnUrl)
         {
+            Cart = new Cart();
+            Order? order = orderRepository.Orders.FirstOrDefault();
+            if(order == null)
             ReturnUrl = returnUrl ?? "/";
         }
         public IActionResult OnPost(long productId, string returnUrl)

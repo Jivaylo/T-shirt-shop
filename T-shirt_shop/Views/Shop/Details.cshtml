@@ -1,4 +1,5 @@
-﻿@model Product
+﻿@using T_shirt.Data.Models
+@model Product
 
 <div class="row">
     <div class="col-md-4">
@@ -9,6 +10,6 @@
         <p>@Model.Description</p>
         <p>@Model.ImageUrl</p>
         <p>@Model.Price.ToString("C")</p>
-        <a href="@Url.Action("AddToCart", "Shop", new { id = Model.Id })" class="btn btn-primary">Add to Cart</a>
+        <a href="@Url.Action("AddToCart", "Shop", new { id = Model.ProductID })" class="btn btn-primary">Add to Cart</a>
     </div>
 </div>

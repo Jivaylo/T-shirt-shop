@@ -12,7 +12,7 @@ namespace T_shirt_shop.Controllers
     public class HomeController : Controller
     {
         private IStoreRepository repository;
-        public int PageSize { get; set; } = 4;
+        public int PageSize { get; set; } = 5;
 
         public HomeController(IStoreRepository repo)
         {

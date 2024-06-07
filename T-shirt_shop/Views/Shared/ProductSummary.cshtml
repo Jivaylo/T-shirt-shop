@@ -1,4 +1,5 @@
-﻿@model Product
+﻿@using T_shirt.Data.Models
+@model Product
 
 <div class="card card-outline-primary m-1 p-1">
     <div class="bg-faded p-1">
@@ -8,6 +9,7 @@
                 <small>@Model.Price.ToString("c")</small>
             </span>
         </h4>
+        <img src="@Model.ImageUrl"/>
     </div>
     <form id="@Model.ProductID" asp-page="/Cart" method="post">
         <input type="hidden" asp-for="ProductID" />

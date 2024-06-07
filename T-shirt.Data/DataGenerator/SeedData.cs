@@ -12,7 +12,7 @@ namespace T_shirt.Data.DataGenerator
 {
     public static class SeedData
     {
-        public static void EnsurePopulated(IApplicationBuilder app)
+        public static void EnsurePopulated(this IApplicationBuilder app)
         {
             StoreDbContext context = app.ApplicationServices
                 .CreateScope().ServiceProvider.GetRequiredService<StoreDbContext>();

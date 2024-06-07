@@ -38,6 +38,8 @@ namespace T_shirt_shop
                 .AddEntityFrameworkStores<StoreDbContext>();
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+            builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 
             WebApplication app = builder.Build();
 
@@ -68,7 +70,8 @@ namespace T_shirt_shop
             //app.MapDefaultControllerRoute();
 
             app.MapRazorPages();
-
+            app.EnsurePopulated();
+            
             app.Run();
         }
     }
