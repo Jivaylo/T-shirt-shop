@@ -40,6 +40,7 @@ namespace T_shirt_shop
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
             builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
+            builder.Services.AddTransient<Cart>();
 
             WebApplication app = builder.Build();
 
