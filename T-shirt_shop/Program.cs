@@ -4,7 +4,7 @@ using T_shirt.Data;
 using T_shirt.Data.Models;
 using T_shirt.Data.DataGenerator;
 using T_shirt.Data.Models.Models;
-using T_shirt_shop.Data;
+using T_shirt.Data;
 using Microsoft.AspNetCore.Builder;
 
 namespace T_shirt_shop
