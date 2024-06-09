@@ -15,7 +15,7 @@ namespace T_shirt.Data.Models
         public int OrderID { get; set; }
 
         [BindNever]
-        public ICollection<CartLine> Lines { get; set; } = null!;
+        public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
         [Required(ErrorMessage = "Please enter a name")]
