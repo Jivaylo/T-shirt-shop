@@ -13,10 +13,10 @@ namespace T_shirt_shop.Controllers
         private IOrderRepository repository;
         private Cart cart;
 
-        public OrderController(IOrderRepository repoService)
+        public OrderController(IOrderRepository repoService, Cart cartService)
         {
             repository = repoService;
-            cart = new Cart();
+            cart = cartService;
         }
 
         public ViewResult Checkout() => View(new Order());
