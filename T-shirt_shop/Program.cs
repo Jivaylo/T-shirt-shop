@@ -14,6 +14,7 @@ namespace T_shirt_shop
         public static void Main(string[] args)
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+                        var connectionString = builder.Configuration.GetConnectionString("AppIdentityDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AppIdentityDbContextConnection' not found.");
 
             // Database connection settings
             string connectionString = builder.Configuration
@@ -22,6 +23,9 @@ namespace T_shirt_shop
 
             builder.Services.AddDbContext<StoreDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+                        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
