@@ -69,7 +69,7 @@ namespace T_shirt_shop
             app.MapRazorPages();
             app.EnsurePopulated();
             app.EnsurePopulatedIdentity();
-
+            
             app.Run();
         }
     }
