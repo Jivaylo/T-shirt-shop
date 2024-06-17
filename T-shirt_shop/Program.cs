@@ -14,24 +14,15 @@ namespace T_shirt_shop
         public static void Main(string[] args)
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-                        var connectionString = builder.Configuration.GetConnectionString("AppIdentityDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AppIdentityDbContextConnection' not found.");
-
-            // Database connection settings
-            string connectionString = builder.Configuration
-                .GetConnectionString("DefaultConnection") ??
-                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration.GetConnectionString("StoreDbContextConnection") ?? throw new InvalidOperationException("Connection string 'StoreDbContextConnection' not found.");
 
             builder.Services.AddDbContext<StoreDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-                        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<AppIdentityDbContext>();
-
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            // Identity settings
             builder.Services
-                .AddDefaultIdentity<IdentityUser>(options =>
+                .AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireDigit = false;
@@ -39,6 +30,7 @@ namespace T_shirt_shop
                     options.Password.RequireLowercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<StoreDbContext>();
 
             builder.Services.AddControllersWithViews();
@@ -76,7 +68,8 @@ namespace T_shirt_shop
 
             app.MapRazorPages();
             app.EnsurePopulated();
-            
+            app.EnsurePopulatedIdentity();
+
             app.Run();
         }
     }
