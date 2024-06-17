@@ -4,6 +4,7 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using T_shirt.Data.Models;
@@ -13,6 +14,7 @@ using static Humanizer.In;
 
 namespace T_shirt_shop.Pages
 {
+    [Authorize]
     public class CartModel : PageModel
     {
         private IStoreRepository repository;
