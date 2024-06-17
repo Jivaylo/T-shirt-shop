@@ -18,7 +18,7 @@ namespace T_shirt.Data.Models.Models
             .CreateScope().ServiceProvider
             .GetRequiredService<RoleManager<IdentityRole>>();
 
-            await roleManager.CreateAsync(new IdentityRole("administrator"));
+            await roleManager.CreateAsync(new IdentityRole("Admin"));
 
 
             StoreDbContext context = app.ApplicationServices
@@ -41,9 +41,9 @@ namespace T_shirt.Data.Models.Models
                 IdentityResult result = await userManager.CreateAsync(user, adminPassword);
             }
 
-            if (!await userManager.IsInRoleAsync(user, "administrator"))
+            if (!await userManager.IsInRoleAsync(user, "Admin"))
             {
-                var rolesAddResult = await userManager.AddToRoleAsync(user, "administrator");
+                var rolesAddResult = await userManager.AddToRoleAsync(user, "Admin");
 
                 var roless = await userManager.GetRolesAsync(user);
             }
