@@ -10,7 +10,7 @@ namespace T_shirt.Data.Models.Models
         private const string adminRole = "Admin";
 
         private const string adminUser = "Admin";
-        private const string adminPassword = "123456";
+        private const string adminPassword = "Secret123$";
         public static async void EnsurePopulatedIdentity(this IApplicationBuilder app)
         {
 
@@ -36,7 +36,7 @@ namespace T_shirt.Data.Models.Models
             {
                 user = new ApplicationUser();
                 user.UserName = adminUser;
-                user.Email = "admin@mal.com";
+                user.Email = "admin@example.com";
                 user.PhoneNumber = "555-1234";
                 IdentityResult result = await userManager.CreateAsync(user, adminPassword);
             }
