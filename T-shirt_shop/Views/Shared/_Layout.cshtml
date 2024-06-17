@@ -9,6 +9,18 @@
     <title>Sports store</title>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-0">
+                <div class="container-fluid">
+                    @{
+                        await Html.RenderPartialAsync("_LoginPartial");
+                    }
+                </div>
+            </nav>
+        </div>
+        <hr class="mt-0" />
+    </header>
     <div class="bg-dark text-white p-2">
         <div class="container-fluid">
             <div class="row">
@@ -27,5 +39,8 @@
             @RenderBody()
         </div>
     </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

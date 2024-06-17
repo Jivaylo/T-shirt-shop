@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using T_shirt.Data.Models;
 using T_shirt.Data.Models.Models;
+using static Humanizer.In;
 
 
 namespace T_shirt_shop.Pages
@@ -13,22 +16,24 @@ namespace T_shirt_shop.Pages
     public class CartModel : PageModel
     {
         private IStoreRepository repository;
-        public CartModel(IStoreRepository repo, Cart cartService)
+        public CartModel(IStoreRepository repo, Cart cart)
         {
             repository = repo;
-            Cart = cartService;
+            Cart = cart;
         }
         public Cart Cart { get; set; }
         public string ReturnUrl { get; set; }
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
+            
         }
         public IActionResult OnPost(long productId, string returnUrl)
         {
             Product product = repository.Products
-            .FirstOrDefault(p => p.ProductID == productId);
-            Cart.AddItem(product, 1);
+            .FirstOrDefault(p => p.ProductID == productId)!;
+            this.Cart.AddItem(product, 1);
+            
             return RedirectToPage(new { returnUrl = returnUrl });
         }
 

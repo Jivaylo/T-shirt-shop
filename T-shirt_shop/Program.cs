@@ -4,7 +4,6 @@ using T_shirt.Data;
 using T_shirt.Data.Models;
 using T_shirt.Data.DataGenerator;
 using T_shirt.Data.Models.Models;
-using T_shirt_shop.Data;
 using Microsoft.AspNetCore.Builder;
 
 namespace T_shirt_shop
@@ -14,20 +13,15 @@ namespace T_shirt_shop
         public static void Main(string[] args)
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-
-            // Database connection settings
-            string connectionString = builder.Configuration
-                .GetConnectionString("DefaultConnection") ??
-                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration.GetConnectionString("StoreDbContextConnection") ?? throw new InvalidOperationException("Connection string 'StoreDbContextConnection' not found.");
 
             builder.Services.AddDbContext<StoreDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            // Identity settings
             builder.Services
-                .AddDefaultIdentity<IdentityUser>(options =>
+                .AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireDigit = false;
@@ -35,12 +29,13 @@ namespace T_shirt_shop
                     options.Password.RequireLowercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<StoreDbContext>();
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
             builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
-            builder.Services.AddTransient<Cart>();
+            builder.Services.AddSingleton<Cart>();
 
             WebApplication app = builder.Build();
 
@@ -72,6 +67,7 @@ namespace T_shirt_shop
 
             app.MapRazorPages();
             app.EnsurePopulated();
+            app.EnsurePopulatedIdentity();
             
             app.Run();
         }

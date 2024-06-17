@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using T_shirt.Data.Models;
+using T_shirt.Data;
 
 #nullable disable
 
-namespace T_shirt_shop.Data.Migrations
+namespace T_shirt.Data.Models.Migrations
 {
-    [DbContext(typeof(AppIdentityDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(StoreDbContext))]
+    [Migration("20240616230344_added-identity")]
+    partial class addedidentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,11 +169,6 @@ namespace T_shirt_shop.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -189,11 +186,6 @@ namespace T_shirt_shop.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -206,9 +198,7 @@ namespace T_shirt_shop.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
@@ -236,34 +226,79 @@ namespace T_shirt_shop.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("T_shirt.Data.Models.Order", b =>
+            modelBuilder.Entity("T_shirt.Data.Models.CartLine", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CartLineID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartLineID"), 1L, 1);
 
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("OrderID")
+                        .HasColumnType("int");
 
-                    b.Property<string>("GiftMessage")
+                    b.Property<long>("ProductID")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartLineID");
+
+                    b.HasIndex("OrderID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("CartLine");
+                });
+
+            modelBuilder.Entity("T_shirt.Data.Models.Order", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"), 1L, 1);
+
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
+                    b.Property<bool>("GiftWrap")
+                        .HasColumnType("bit");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Line1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Line2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.Property<string>("Line3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderID");
 
                     b.ToTable("Orders");
                 });
@@ -282,8 +317,8 @@ namespace T_shirt_shop.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -294,65 +329,39 @@ namespace T_shirt_shop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("T_shirt.Data.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("ProductID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProductID"), 1L, 1);
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(8,2)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("ProductID");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("T_shirt.Data.Models.ShoppingCartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -406,15 +415,19 @@ namespace T_shirt_shop.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("T_shirt.Data.Models.Order", b =>
+            modelBuilder.Entity("T_shirt.Data.Models.CartLine", b =>
                 {
-                    b.HasOne("T_shirt.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("Orders")
-                        .HasForeignKey("ApplicationUserId")
+                    b.HasOne("T_shirt.Data.Models.Order", null)
+                        .WithMany("Lines")
+                        .HasForeignKey("OrderID");
+
+                    b.HasOne("T_shirt.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ApplicationUser");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("T_shirt.Data.Models.OrderItem", b =>
@@ -436,24 +449,10 @@ namespace T_shirt_shop.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("T_shirt.Data.Models.ShoppingCartItem", b =>
-                {
-                    b.HasOne("T_shirt.Data.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("T_shirt.Data.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
             modelBuilder.Entity("T_shirt.Data.Models.Order", b =>
                 {
+                    b.Navigation("Lines");
+
                     b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
