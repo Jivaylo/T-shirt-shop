@@ -1,0 +1,10 @@
+﻿@using T_shirt.Data.Models.ViewModels
+@model EditProductViewModel
+@{
+}
+
+<div class="card card-outline-primary m-1 p-1">
+    <form asp-controller="Product" asp-action="Edit" method="post">
+        <input asp-for="Name"/>
+    </form>
+</div>

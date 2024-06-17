@@ -25,6 +25,14 @@ namespace T_shirt.Data.DataGenerator
             if (!context.Products.Any())
             {
                 context.Products.AddRange(
+                     new Product
+                     {
+                         Name = "Barcelona T-Shirt",
+                         Description = "Official Barcelona T-Shirt",
+                         Category = "Football",
+                         ImageUrl = "https://m.media-amazon.com/images/I/512eTK+cUNL._AC_SX679_.jpg",
+                         Price = 140
+                     },
                     new Product
                     {
                         Name = "Milan T-Shirt",
@@ -56,15 +64,8 @@ namespace T_shirt.Data.DataGenerator
                         Category = "Football",
                         ImageUrl = "https://theshoppies.pk/wp-content/uploads/2023/06/Real-Madrid-2023-24-Home-jERSEY.jpg",
                         Price = 135
-                    },
-                    new Product
-                    {
-                        Name = "Barcelona T-Shirt",
-                        Description = "Official Barcelona T-Shirt",
-                        Category = "Football",
-                        ImageUrl = "https://m.media-amazon.com/images/I/512eTK+cUNL._AC_SX679_.jpg",
-                        Price = 140
                     }
+                
                 );
                 context.SaveChanges();
             }
